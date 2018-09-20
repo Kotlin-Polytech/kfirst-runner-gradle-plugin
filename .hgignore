@@ -1,0 +1,13 @@
+syntax: glob
+
+.gradle
+gradle
+gradlew
+gradlew.bat
+
+build
+out
+
+*.iml
+*.ipr
+*.iws
