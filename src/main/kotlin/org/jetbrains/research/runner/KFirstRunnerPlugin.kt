@@ -37,10 +37,7 @@ open class KFirstRunnerTask : DefaultTask() {
         val args = RunnerArgs(
                 projectDir = "",
                 classpathPrefix = classpath.map {
-                    when {
-                        it.isFile -> "file:$it"
-                        else -> "file:$it/"
-                    }
+                    it.toURI().toString()
                 },
                 packages = packages,
                 authorFile = authorFile,

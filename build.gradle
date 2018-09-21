@@ -9,7 +9,7 @@ plugins {
 }
 
 group 'org.jetbrains.research'
-version '0.1.17'
+version '0.1.17.1'
 
 sourceCompatibility = 1.8
 
@@ -29,7 +29,7 @@ dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     compile group: 'org.jetbrains.research',
             name: 'kfirst-runner',
-            version: project.version
+            version: '0.1.17'
 }
 
 compileKotlin {
