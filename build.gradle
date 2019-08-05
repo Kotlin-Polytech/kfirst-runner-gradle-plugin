@@ -41,8 +41,8 @@ compileTestKotlin {
 }
 
 bintray {
-    user = System.properties['bintray.user']
-    key = System.properties['bintray.pass']
+    user = project.property('bintray.user')
+    key = project.property('bintray.pass')
     pkg {
         userOrg = 'vorpal-research'
         repo = 'kotlin-maven'
