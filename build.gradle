@@ -17,10 +17,10 @@ repositories {
     mavenCentral()
     jcenter()
     maven {
-        url = 'http://maven.polytech.vorpal-research.science'
+        url = 'https://maven.polytech.vorpal-research.science'
     }
     maven {
-        url = 'http://maven.vorpal-research.science'
+        url = 'https://maven.vorpal-research.science'
     }
 }
 
