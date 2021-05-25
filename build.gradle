@@ -5,7 +5,6 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.0'
     id 'maven'
     id 'maven-publish'
-    id 'com.jfrog.bintray' version '1.8.4'
 }
 
 group 'org.jetbrains.research'
@@ -18,10 +17,10 @@ repositories {
     mavenCentral()
     jcenter()
     maven {
-        url 'http://dl.bintray.com/vorpal-research/kotlin-maven'
+        url = 'http://maven.polytech.vorpal-research.science'
     }
     maven {
-        url 'http://dl.bintray.com/xenomachina/maven'
+        url = 'http://maven.vorpal-research.science'
     }
 }
 
@@ -40,27 +39,22 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = '1.8'
 }
 
-bintray {
-    user = project.property('bintray.user')
-    key = project.property('bintray.pass')
-    pkg {
-        userOrg = 'vorpal-research'
-        repo = 'kotlin-maven'
-        name = project.name
-        version {
-            name = project.version
+publishing {
+    repositories {
+        maven {
+            name = 'KotlinPolytechGitHubPackages'
+            url = uri('https://maven.pkg.github.com/Kotlin-Polytech/kotlin-maven')
+            credentials {
+                username = project.findProperty('github.user') 
+                password = project.findProperty('github.pass')
+            }
         }
-        publications = ['BintrayPublication']
+    }
+    publications {
+        KotlinPolytechGitHubPackages(MavenPublication) {
+            from(components.java)
+        }
     }
 }
 
-publishing {
-    publications {
-        BintrayPublication(MavenPublication) {
-            from components.java
-            groupId project.group
-            artifactId project.name
-            version project.version
-        }
-    }
-}
+gradlePlugin { automatedPublishing = false }
