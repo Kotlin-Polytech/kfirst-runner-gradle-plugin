@@ -2,13 +2,12 @@ plugins {
     id 'java'
     id 'java-library'
     id 'java-gradle-plugin'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.0'
-    id 'maven'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
     id 'maven-publish'
 }
 
 group 'org.jetbrains.research'
-version '20.0.0'
+version '21.0.0'
 
 sourceCompatibility = 1.8
 
@@ -25,11 +24,11 @@ repositories {
 }
 
 dependencies {
-    compile gradleApi()
-    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    compile group: 'org.jetbrains.research',
-            name: 'kfirst-runner',
-            version: '20.0.0'
+    implementation gradleApi()
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation  group: 'org.jetbrains.research',
+                    name: 'kfirst-runner',
+                    version: '21.0.0'
 }
 
 compileKotlin {
