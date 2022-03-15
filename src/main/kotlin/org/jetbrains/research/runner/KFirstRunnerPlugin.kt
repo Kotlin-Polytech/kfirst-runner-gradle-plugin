@@ -16,34 +16,42 @@ class KFirstRunnerPlugin : Plugin<Project> {
 open class KFirstRunnerTask : DefaultTask() {
     @get:Input
     var packages: List<String> = emptyList()
+
     @get:Input
     var authorFile: String = "author.name"
+
     @get:Input
     var ownerFile: String = "owner.name"
+
     @get:Input
     var resultFile: String = "results.json"
+
     @get:Input
     var timeout: Long = 50L
+
+    @get:Input
+    var useBlacklistedExceptions: Boolean = false
 
     @TaskAction
     fun kotoedRun() {
         val javaPlugin = project.convention.getPlugin(JavaPluginConvention::class.java)
         val sourceSets = javaPlugin.sourceSets
         val classpath = sourceSets.findByName("test")?.runtimeClasspath
-                ?: emptyList<File>()
+            ?: emptyList<File>()
 
         val runner = org.jetbrains.research.runner.KFirstRunner()
 
         val args = RunnerArgs(
-                projectDir = "",
-                classpathPrefix = classpath.map {
-                    it.toURI().toString()
-                },
-                packages = packages,
-                authorFile = authorFile,
-                ownerFile = ownerFile,
-                resultFile = resultFile,
-                timeout = timeout
+            projectDir = "",
+            classpathPrefix = classpath.map {
+                it.toURI().toString()
+            },
+            packages = packages,
+            authorFile = authorFile,
+            ownerFile = ownerFile,
+            resultFile = resultFile,
+            timeout = timeout,
+            useBlacklistedExceptions = useBlacklistedExceptions
         )
 
         runner.run(args)

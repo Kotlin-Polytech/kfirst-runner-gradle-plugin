@@ -7,14 +7,13 @@ plugins {
 }
 
 group 'org.jetbrains.research'
-version '21.0.0'
+version '21.0.1'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
     maven {
         url = 'https://maven.polytech.vorpal-research.science'
     }
@@ -28,7 +27,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation  group: 'org.jetbrains.research',
                     name: 'kfirst-runner',
-                    version: '21.0.0'
+                    version: '21.0.1'
 }
 
 compileKotlin {
